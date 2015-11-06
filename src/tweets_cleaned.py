@@ -18,9 +18,17 @@ def read_tweets(filemame):
 				tweet_feed.append(json.loads(line))
 	return tweet_feed		
 
+'''
+Function name: write_clean_feed
+Input: filename - filename to fetch the tweets
+		tweet_feed- feed to be cleaned
+		relevant_feed-feed dictionary for the timestamp
+Description: This function writes clean feed information to the output file
+Return type: tweet_feed - tweetcontaining all the tweets
+'''
 
 def write_clean_feed(filename,tweet_feed,relevant_feed):
-	count_unicode=0
+	count_unicode=0		
 	with open(filename,"w") as f:
 		for item in tweet_feed:
 			normalized_text=item['text'].encode('ascii','ignore')
@@ -33,8 +41,7 @@ def write_clean_feed(filename,tweet_feed,relevant_feed):
 
 def main():
 	tweet_feed=[]
-	relevant_feed={}
-	new_text=[]
+	relevant_feed={}		#dictionary containing timestamp information
 	input_filename=str(sys.argv[1])
 	output_filename=str(sys.argv[2])
 	tweet_feed=read_tweets(input_filename)
